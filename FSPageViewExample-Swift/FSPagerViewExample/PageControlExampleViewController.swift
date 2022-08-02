@@ -215,10 +215,12 @@ class PageControlExampleViewController: UIViewController,UITableViewDataSource,U
         return self.imageNames.count
     }
     
-    public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+    public func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> UICollectionViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
-        cell.imageView?.image = UIImage(named: self.imageNames[index])
-        cell.imageView?.contentMode = .scaleAspectFill
+        if let cell = cell as? FSPagerViewCell {
+            cell.imageView?.image = UIImage(named: self.imageNames[index])
+            cell.imageView?.contentMode = .scaleAspectFill
+        }
         return cell
     }
     
